@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="oleg" id="10000000-2">
+        <sql>
+            INSERT INTO users (email, password, phone, status, role_name, created_at, updated_at)
+            VALUES ('admin@mail.com', '$2a$12$/eisY.8uaYz2G.ucn/DBC.QCOL6STWCSeas7DOy7LgdBn7b2WSeEe', '+998971111111', 'ACTIVE', 'ADMIN', now(), now());
+            <!--password: 123456-->
+
+            INSERT INTO users (email, password, phone, status, role_name, created_at, updated_at)
+            VALUES ('moderator@mail.com', '$2a$12$/eisY.8uaYz2G.ucn/DBC.QCOL6STWCSeas7DOy7LgdBn7b2WSeEe', '+998972222222', 'ACTIVE', 'MODERATOR', now(), now());
+            <!--password: 123456-->
+
+            INSERT INTO users (email, password, phone, status, role_name, created_at, updated_at)
+            VALUES ('user@mail.com', '$2a$12$/eisY.8uaYz2G.ucn/DBC.QCOL6STWCSeas7DOy7LgdBn7b2WSeEe', '+998973333333', 'ACTIVE', 'USER', now(), now());
+            <!--password: 123456-->
+
+            INSERT INTO news (name, description, body, image_path, status, created_at, updated_at)
+            VALUES ('A new India verdict', 'Madras high court: A new India verdict recognises value of women work'
+            , 'An Indian courts recent verdict that significantly expands the rights of homemakers over their husband property has been hailed as a positive sign by women rights advocates'
+            , 'first.jpg','ACTIVE', now(), now());
+
+            INSERT INTO news (name, description, body, image_path, status, created_at, updated_at)
+            VALUES ('Climate change', 'Chinas green power surge offers hope on warming'
+            , 'Wind and solar power are booming in China and may help limit global carbon emissions far faster than expected, according to a new study. Solar panel installations alone are growing at a pace that would increase global capacity by 85% by 2025'
+            , 'second.jpg','ACTIVE', now(), now());
+
+            INSERT INTO news (name, description, body, image_path, status, created_at, updated_at)
+            VALUES ('Colleen Ballinger', 'YouTube star writes song to respond to accusing fans'
+            , 'YouTube star Colleen Ballinger has addressed accusations of toxic relationships with fans by posting a video in which she defends herself in a song while playing the ukulele. The US creator found fame with her Miranda Sings character from 2008'
+            , 'third.jpg','ACTIVE', now(), now());
+        </sql>
+    </changeSet>
+</databaseChangeLog>

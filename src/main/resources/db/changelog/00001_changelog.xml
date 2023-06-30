@@ -1,0 +1,52 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="oleg" id="10000000-1">
+        <sql>
+            create sequence id_user_sequence;
+
+            create table users
+            (
+                id bigint DEFAULT nextval('id_user_sequence'::regclass) NOT NULL,
+                email varchar(300) NOT NULL,
+                password varchar(200) NOT NULL,
+                phone varchar(25) NOT NULL,
+                status varchar(25) NOT NULL,
+                role_name varchar(25) NOT NULL,
+                created_at timestamp NOT NULL default NOW(),
+                updated_at timestamp NOT NULL,
+                PRIMARY KEY (id),
+                CONSTRAINT uq_email UNIQUE (email),
+                CONSTRAINT uq_phone UNIQUE (phone)
+            );
+
+            create sequence id_news_sequence;
+
+            create table news
+            (
+                id bigint DEFAULT nextval('id_news_sequence'::regclass) NOT NULL,
+                name varchar(300) NOT NULL,
+                description varchar(200),
+                body text NOT NULL,
+                image_path varchar(500),
+                status varchar(25) NOT NULL,
+                created_at timestamp NOT NULL default NOW(),
+                updated_at timestamp,
+                PRIMARY KEY (id)
+            );
+
+            create sequence id_conf_code_sequence;
+
+            create table confirmation_code
+            (
+                id bigint DEFAULT nextval('id_conf_code_sequence'::regclass) NOT NULL,
+                user_id bigint NOT NULL,
+                code varchar(10) NOT NULL,
+                session_id varchar(50),
+                status smallint NOT NULL,
+                created_at timestamp NOT NULL default NOW(),
+                updated_at timestamp NOT NULL,
+                PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>
