@@ -1,0 +1,35 @@
+server:
+  port: 8050
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/news
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    ddl-auto: update
+    properties:
+      hibernate:
+        proc:
+          param_null_passing: true
+        generate_statistics: false
+        jdbc:
+          batch_size: 1000
+  liquibase:
+    change-log: classpath:db/scripts.xml
+    enabled: true
+  confirmation:
+    code:
+      length: 6
+      timeout: 180
+logging:
+  level:
+    liquibase: ERROR
+    root: INFO
+
+jwt:
+  token:
+    secret: jwtappdemo
+    expired: 3600000 #1 hour
